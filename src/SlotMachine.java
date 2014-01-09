@@ -134,6 +134,7 @@ public class SlotMachine extends JPanel implements Runnable,ActionListener
 	frame.setTitle("Slot Machine");
 	frame.setVisible(true);
 	frame.pack();
+	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }
 

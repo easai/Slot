@@ -39,12 +39,14 @@ public class SlotNumber extends JPanel
     int x1,x2,x3;
 
     int count=0;
-    Font font=new Font("Lucida Sans Unicode",Font.BOLD,100);
-    int imageHeight=0;
-    int imageWidth=0;
+
+    int imageHeight=240;
+    int imageWidth=80;
 
     boolean pause=false;
     boolean gotIt=false;
+
+    Image gop,dem;    
  
     SlotNumber()
     {
@@ -52,10 +54,6 @@ public class SlotNumber extends JPanel
 	x2=getRandomNumber();
 	x3=getRandomNumber();
 
-	FontMetrics fm=getFontMetrics(font);
-	
-	imageHeight=fm.getAscent()*2;
-	imageWidth=fm.charWidth('8');
 	setPreferredSize(new Dimension(imageWidth,imageHeight));
     }
 
@@ -67,22 +65,33 @@ public class SlotNumber extends JPanel
 
     public void paint(Graphics g)
     {
-	if(gotIt)
+	if(gop==null)
 	    {
-		g.setColor(Color.red);
+		ClassLoader cl = this.getClass().getClassLoader(); 
+		ImageIcon gopIcon = new ImageIcon(cl.getResource("GOP.png"));
+		if(gopIcon!=null)
+		    gop=gopIcon.getImage();
 	    }
-	else
+	if(dem==null)
 	    {
-		g.setColor(Color.white);
-	    }
-	g.fillRect(0,0,getWidth(),getHeight());
+		ClassLoader cl = this.getClass().getClassLoader(); 
+		ImageIcon demIcon = new ImageIcon(cl.getResource("Dem.png"));
+		if(demIcon!=null)
+		    dem=demIcon.getImage();
+	    }	
 
-	g.setColor(Color.black);
-	g.setFont(font);
-
-	g.drawString(""+x1,0,imageHeight/4+count);
-	g.drawString(""+x2,0,3*imageHeight/4+count);
-	g.drawString(""+x3,0,5*imageHeight/4+count);
+	Image image=gop;
+	if(x1==1)
+	    image=dem;
+	g.drawImage(image,0,count,this);
+	image=gop;
+	if(x2==1)
+	    image=dem;
+	g.drawImage(image,0,imageHeight/3+count,this);
+	image=gop;
+	if(x3==1)
+	    image=dem;
+	g.drawImage(image,0,2*imageHeight/3+count,this);
     }
 
     int getRandomNumber()

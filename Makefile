@@ -9,7 +9,7 @@ LIBDIR=lib
 all: $(TARGET)
 
 $(TARGET):$(patsubst %,$(CLASSESDIR)/%,$(CLASSES))
-	jar cvfm $(TARGET) MANIFEST.MF -C classes .
+	jar cvfm $(TARGET) MANIFEST.MF -C classes . 
 
 $(CLASSESDIR)/%.class:$(SRCDIR)/%.java
 	javac -d classes -classpath classes $^
