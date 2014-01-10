@@ -19,5 +19,5 @@ $(CLASSESDIR)/%.class:$(LIBDIR)/%.java
 
 .PHONY: clean
 clean:
-	rm classes/* $(TARGET)
+	rm classes/*.class $(TARGET)
 
