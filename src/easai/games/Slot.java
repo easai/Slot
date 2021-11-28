@@ -19,6 +19,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Slot extends JPanel implements Runnable, ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Thread thread = new Thread(this);
 	Font font = new Font("Lucida Sans Unicode", Font.BOLD, 100);
 	Font smallFont = new Font("Lucida Sans Unicode", Font.BOLD, 20);
@@ -47,13 +51,14 @@ public class Slot extends JPanel implements Runnable, ActionListener {
 		Thread me = Thread.currentThread();
 		while (me == thread) {
 			try {
-				thread.sleep(1);
-				if (count < 300) {
+				Thread.sleep(1);
+				int interval=900;
+				if (count < interval) {
 					count++;
-				} else if (count < 600) {
+				} else if (count < interval*2) {
 					xImage.pause = true;
 					count++;
-				} else if (count < 900) {
+				} else if (count < interval*3) {
 					yImage.pause = true;
 					count++;
 				} else {

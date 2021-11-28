@@ -18,6 +18,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class SlotNumber extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	int x1, x2, x3;
 
 	int count = 0;
